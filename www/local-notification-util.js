@@ -74,6 +74,8 @@ exports.applyPlatformSpecificOptions = function () {
         defaults.ledOnTime = undefined;
         defaults.ledOffTime = undefined;
         defaults.color     = undefined;
+        defaults.channelId = undefined;
+        defaults.channelName = undefined;
         break;
     }
 

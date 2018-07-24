@@ -235,12 +235,24 @@ public class Notification {
     private void showNotification () {
         int id = getOptions().getId();
 
+        NotificationManager notificationManager = getNotMgr();
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            String channelId = getOptions().getChannelId();
+            String channelName = getOptions().getChannelName();
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+
+            NotificationChannel notificationChannel = new NotificationChannel(channelId, channelName, importance);
+            notificationManager.createNotificationChannel(notificationChannel);
+
+            builder.setChannelId(channelId);
+        }
+
         if (Build.VERSION.SDK_INT <= 15) {
             // Notification for HoneyComb to ICS
-            getNotMgr().notify(id, builder.getNotification());
+            notificationManager.notify(id, builder.getNotification());
         } else {
             // Notification for Jellybean and above
-            getNotMgr().notify(id, builder.build());
+            notificationManager.notify(id, builder.build());
         }
     }
 
