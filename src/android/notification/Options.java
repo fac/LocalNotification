@@ -247,6 +247,20 @@ public class Options {
     }
 
     /**
+     * ID for the local notification channel.
+     */
+    public String getChannelId() {
+        return options.optString("channelId", "");
+    }
+
+    /**
+     * Name of the local notification channel.
+     */
+    public String getChannelName() {
+        return options.optString("channelName", "");
+    }
+
+    /**
      * Trigger date.
      */
     public Date getTriggerDate() {
